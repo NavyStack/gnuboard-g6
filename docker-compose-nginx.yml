@@ -1,0 +1,52 @@
+version: "3.9"
+services:
+  gnuboard6:
+    image: navystack/gnuboard-g6:nightly-latest
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+    volumes:
+      - ./data:/g6/data
+    ports:
+      - "8000:8000"
+    networks:
+      - gnuboard6-internal
+
+  gnuboard6-db:
+    image: mysql:8
+    volumes:
+      - db_data:/var/lib/mysql
+      - db_socket:/var/lib/mysqld
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+    environment:
+      MYSQL_ROOT_PASSWORD: "QZsuN1DuC194r753AXW3VCnE1rdF90"
+      MYSQL_DATABASE: gnuboard6
+      MYSQL_USER: gnuboard6
+      MYSQL_PASSWORD: "M4xeZ8rRro4lbWxe8cemFIIVSmyyAR"
+    networks:
+      - gnuboard6-internal
+
+  gnuboard6-nginx:
+    image: nginx:mainline
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: "10m"
+    depends_on:
+      - gnuboard6
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - gnuboard6-internal
+    ports:
+      - 8890:80
+
+volumes:
+  db_data:
+  db_socket:
+networks:
+  gnuboard6-internal:

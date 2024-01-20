@@ -1,0 +1,52 @@
+version: "3.9"
+services:
+  gnuboard6:
+    image: navystack/gnuboard-g6:nightly-latest
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+    volumes:
+      - gnuboard6-data:/g6/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.g6-srv.loadbalancer.server.port=8000"
+      - "traefik.http.services.g6-srv.loadbalancer.passhostheader=true"
+      - "traefik.http.routers.g6-rt.rule=Host(`navystack.com`) || Host(`www.navystack.com`)" ## 수정
+      - "traefik.http.routers.g6-rt.entrypoints=websecure"
+      - "traefik.http.routers.g6-rt.service=g6-srv"
+      - "traefik.http.routers.g6-rt.middlewares=www-to-Root@file, security-headers@file"
+      - "traefik.http.routers.g6-rt.tls=true"
+      - "traefik.http.routers.g6-rt.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.g6-rt.tls.domains[0].main=navystack.com" ## 수정
+      - "traefik.http.routers.g6-rt.tls.domains[0].sans=www.navystack.com" ## 수정
+    networks:
+      - traefik-network
+      - internal
+
+  gnuboard6-db:
+    image: mysql:8
+    volumes:
+      - db_data:/var/lib/mysql
+      - db_socket:/var/lib/mysqld
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+    environment:
+      MYSQL_ROOT_PASSWORD: "29L2C4ZywBEChQB4asLSGEdqFqVhv0"
+      MYSQL_DATABASE: gnuboard6
+      MYSQL_USER: gnuboard6
+      MYSQL_PASSWORD: "8cOgMqpldKZo24656XcYaixzC3kB8D"
+    networks:
+      - internal
+
+networks:
+  traefik-network:
+    external: true
+  internal:
+
+volumes:
+  gnuboard6-data:
+  db_data:
+  db_socket:

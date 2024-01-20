@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  gnuboard6:
+    image: navystack/gnuboard-g6:nightly-latest
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+    volumes:
+      - ./data:/g6/data
+    ports:
+      - "8000:8000"
+
+  gnuboard6-nginx:
+    image: nginx:mainline
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: "10m"
+    depends_on:
+      - gnuboard6
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - gnuboard6-internal
+    ports:
+      - 80:80
+
+  gnuboard6-postgresql:
+    image: postgres:16-bullseye
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "6VqahNQruCdfnzKSFaUmE8pUd2o7Ee"
+    volumes:
+      - postgresql_database:/var/lib/postgresql/data
+
+volumes:
+  postgresql_database:
