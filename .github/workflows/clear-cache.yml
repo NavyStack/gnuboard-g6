@@ -1,0 +1,13 @@
+name: Clear Github Cache
+
+on:
+  workflow_dispatch:
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge caches
+        uses: MyAlbum/purge-cache@v2
+        with:
+          max-age: 0
+          token: ${{ secrets.GH_PAT }}
