@@ -69,9 +69,9 @@ jobs:
           push: true
           pull: true
           tags: |
-            ghcr.io/${{ env.REPO_OWNER_LOWERCASE }}/gnuboard-g6:nightly
-            ghcr.io/${{ env.REPO_OWNER_LOWERCASE }}/gnuboard-g6:nightly-latest
             ghcr.io/${{ env.REPO_OWNER_LOWERCASE }}/gnuboard-g6:nightly-${{ env.CURRENT_DATE_KST }}
+            ghcr.io/${{ env.REPO_OWNER_LOWERCASE }}/gnuboard-g6:nightly-latest
+            ghcr.io/${{ env.REPO_OWNER_LOWERCASE }}/gnuboard-g6:nightly
             navystack/gnuboard-g6:nightly-${{ env.CURRENT_DATE_KST }}
             navystack/gnuboard-g6:nightly-latest
             navystack/gnuboard-g6:nightly
