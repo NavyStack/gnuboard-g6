@@ -1,4 +1,4 @@
-FROM navystack/gnuboard-g6:base-nightly AS base
+FROM ghcr.io/navystack/gnuboard-g6:base-nightly AS base
 RUN /venv/bin/python3 -m pip install -r requirements.txt
 RUN find . -type f \( -name '__pycache__' -o -name '*.pyc' -o -name '*.pyo' \) -exec bash -c 'echo "Deleting {}"; rm -f {}' \;
 

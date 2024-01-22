@@ -26,29 +26,34 @@ K-CMS 그누보드(gnuboard) 6 도커이미지 (자동 빌드)
 > [!IMPORTANT]
 > 본 레포의 `docker-compose.yml` 파일은 효율성을 위해 Traefik을 사용하는 것을 목적으로 설계되었습니다.<br><br>
 > 결론도출근거
+>
 > 1. 웹서버인 uvicorn이 이미 존재함 따라서, Nginx를 앞단에 배치하는 것은 레이턴시만 높일 뿐임. <br>
 > 2. Reverse-Proxy만을 목적으로 설계된 Traefik이 적합하다 판단.<br><br>
-> 따라서 관련된 선행 작업이 있습니다.<br> [너무나 쉬운 트래픽 리버스 프록시](https://github.com/NavyStack/traefik)를 참고하셔서 진행하셔야 합니다.
+>    따라서 관련된 선행 작업이 있습니다.<br> [너무나 쉬운 트래픽 리버스 프록시](https://github.com/NavyStack/traefik)를 참고하셔서 진행하셔야 합니다.
 
 ## Traefik으로 사용하기
+
 1. `git clone https://github.com/NavyStack/gnuboard-g6.git` <br>
 2. `cd gnuboard-g6` <br>
 3. `docker compose -f up -d`
 
 ## Nginx로 사용하기
+
 1. `git clone https://github.com/NavyStack/gnuboard-g6.git` <br>
 2. `cd gnuboard-g6` <br>
 3. `docker compose -f docker-compose-nginx.yml up -d`
 
 ## PGsql을 DB로 사용하기
+
 1. `git clone https://github.com/NavyStack/gnuboard-g6.git` <br>
 2. `cd gnuboard-g6` <br>
 3. `docker compose -f docker-compose-pgsql.yml up -d`
 
 ## 직접 빌드하고 싶으신가요?
+
 1. `git clone https://github.com/NavyStack/gnuboard-g6.git` <br>
 2. `cd gnuboard-g6` <br>
-3. `docker buildx build -t navystack/gnuboard-g6 -f Dockerfile . --load` <br>
+3. `docker buildx build -t navystack/gnuboard-g6 -f docker/bookworm/Dockerfile . --load` <br>
 
 ## 라이선스
 
