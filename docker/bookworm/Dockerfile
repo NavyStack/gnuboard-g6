@@ -1,4 +1,10 @@
+FROM python:bookworm AS git
+RUN git clone --recurse-submodules -j8 --depth 1 https://github.com/gnuboard/g6.git
+
 FROM ghcr.io/navystack/gnuboard-g6:base-nightly AS base
+RUN rm -rf /g6/requirements.txt
+COPY --from=git --chown=$user:$user /g6/requirements.txt /g6/requirements.txt
+
 RUN /venv/bin/python3 -m pip install -r requirements.txt
 RUN find . -type f \( -name '__pycache__' -o -name '*.pyc' -o -name '*.pyo' \) -exec bash -c 'echo "Deleting {}"; rm -f {}' \;
 
