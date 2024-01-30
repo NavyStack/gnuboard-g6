@@ -9,6 +9,9 @@ on:
     paths:
       - "./docker/bookworm/Dockerfile"
 
+env:
+  SHA: ${{ github.event.pull_request.head.sha || github.event.after }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,6 +23,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: navystack/gnuboard-g6
+          labels: |
+            org.opencontainers.image.revision=${{ env.SHA }}
 
       #- name: Set up QEMU
       #  uses: docker/setup-qemu-action@v3
