@@ -72,7 +72,6 @@ jobs:
         with:
           file: docker/bookworm/Dockerfile
           push: true
-          pull: true
           tags: |
             ghcr.io/${{ env.REPO_OWNER_LOWERCASE }}/gnuboard-g6:nightly-${{ env.CURRENT_DATE_KST }}
             ghcr.io/${{ env.REPO_OWNER_LOWERCASE }}/gnuboard-g6:nightly-latest
@@ -82,7 +81,8 @@ jobs:
             navystack/gnuboard-g6:nightly
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
-
+          outputs: type=image,compression=zstd,compression-level=22,push=true
+          
       - name: Docker Scout
         id: docker-scout
         if: ${{ github.event_name == 'pull_request' }}
