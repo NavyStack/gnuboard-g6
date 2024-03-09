@@ -9,6 +9,16 @@ K-CMS 그누보드(gnuboard) 6 도커이미지 (자동 빌드)
 - [NavyStack 그누보드6 Github](https://github.com/NavyStack/gnuboard-g6)<br>
 - [그누보드6 Github](https://github.com/gnuboard/g6.git)<br>
 
+
+## Askfront.com
+초보자도 자유롭게 질문할 수 있는 포럼을 만들었습니다. <br />
+NavyStack의 가이드 뿐만 아니라, 아니라 모든 종류의 질문을 하실 수 있습니다.
+
+검색해도 도움이 되지 않는 정보만 나오는 것 같고, 주화입마에 빠진 것 같은 기분이 들 때가 있습니다.<br />
+그럴 때, 부담 없이 질문해 주세요. 같이 의논하며 생각해봅시다.
+
+[AskFront.com (에스크프론트) 포럼](https://askfront.com/?github)
+
 ## K-CMS 그누보드 (gnuboard) 6
 
 1. 정식 `semver` 태그가 부여되기 전까지는 매일 자동으로 빌드됩니다. (nightly)
