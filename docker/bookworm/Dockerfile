@@ -3,19 +3,19 @@ RUN git clone --recurse-submodules -j8 --depth 1 https://github.com/gnuboard/g6.
 
 FROM ghcr.io/navystack/gnuboard-g6:base-nightly AS base
 RUN rm -rf /g6/requirements.txt
-COPY --from=git --chown=$user:$user /g6/requirements.txt /g6/requirements.txt
+COPY --from=git --chown=${USER}:${USER} /g6/requirements.txt /g6/requirements.txt
 
 RUN /venv/bin/python3 -m pip install -r requirements.txt
 RUN find . -type f \( -name '__pycache__' -o -name '*.pyc' -o -name '*.pyo' \) -exec bash -c 'echo "Deleting {}"; rm -f {}' \;
 
 FROM python:3.12-slim-bookworm AS final
 
-ARG user=g6
-RUN useradd --create-home --shell /bin/bash $user
+ARG USER=g6
+RUN useradd --create-home --shell /bin/bash ${USER}
 
-COPY --from=base --chown=$user:$user /standby-g6 /g6
-COPY --from=base --chown=$user:$user /venv /venv
-COPY --from=base --chown=$user:$user /usr/bin/tini /usr/bin/tini
+COPY --from=base --chown=${USER}:${USER} /standby-g6 /g6
+COPY --from=base --chown=${USER}:${USER} /venv /venv
+COPY --from=base --chown=${USER}:${USER} /usr/bin/tini /usr/bin/tini
 
 USER g6
 WORKDIR /g6
