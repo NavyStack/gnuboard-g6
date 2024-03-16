@@ -11,7 +11,7 @@ RUN chown -R $user:$user /g6
 # As a result, we're utilising the RUN command to correctly set the ownership.
 RUN find . -mindepth 1 -maxdepth 1 -name '.*' ! -name '.' ! -name '..' -exec bash -c 'echo "Deleting {}"; rm -rf {}' \;
 
-FROM python:3.12 AS git
+FROM python:3.12 AS env-builder
 
 ENV RUST_VERSION=1.76.0 \
     RUSTUP_HOME=/usr/local/rustup \
