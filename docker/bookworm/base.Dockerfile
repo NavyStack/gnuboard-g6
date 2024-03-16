@@ -13,8 +13,9 @@ RUN find . -mindepth 1 -maxdepth 1 -name '.*' ! -name '.' ! -name '..' -exec bas
 
 FROM python:3.12 AS env-builder
 
-RUN curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal -y
-ENV PATH "/root/.cargo/bin:$PATH"
+RUN curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal -y && \
+    echo 'source $HOME/.cargo/env' >> $HOME/.bashrc
+ENV PATH "$HOME/.cargo/bin:$PATH"
 
 ARG USER=g6
 RUN useradd --create-home --shell /bin/bash ${USER}
