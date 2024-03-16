@@ -45,10 +45,12 @@ RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
         libblas-dev \
         libopenblas-dev;
 
-RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-RUN dpkg-reconfigure --frontend=noninteractive locales
-RUN python3 -m venv /venv
-RUN /venv/bin/python3 -m pip install --upgrade pip
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
+    && dpkg-reconfigure --frontend=noninteractive locales
+
 RUN --mount=type=tmpfs,target=/root/.cargo \
-    /venv/bin/python3 -m pip install -r requirements.txt
+    python3 -m venv /venv \
+    && /venv/bin/python3 -m pip install --upgrade pip \
+    && /venv/bin/python3 -m pip install -r requirements.txt
+    
 COPY --from=git --chown=${USER}:${USER} /g6 /standby-g6
