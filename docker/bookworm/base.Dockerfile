@@ -13,7 +13,7 @@ RUN find . -mindepth 1 -maxdepth 1 -name '.*' ! -name '.' ! -name '..' -exec bas
 
 FROM python:3.12 AS env-builder
 
-RUN curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal -y && \
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs/ | sh -s -- --default-toolchain=1.68.0 -y && \
     echo 'source $HOME/.cargo/env' >> $HOME/.bashrc
 ENV PATH "$HOME/.cargo/bin:$PATH"
 
@@ -52,5 +52,5 @@ RUN --mount=type=tmpfs,target=/root/.cargo \
     python3 -m venv /venv \
     && /venv/bin/python3 -m pip install --upgrade pip \
     && /venv/bin/python3 -m pip install -r requirements.txt
-    
+
 COPY --from=git --chown=${USER}:${USER} /g6 /standby-g6
