@@ -68,7 +68,7 @@ COPY --from=env-builder --chown=$user:$user /usr/bin/tini /usr/bin/tini
 
 USER g6
 WORKDIR /g6
-VOLUME /g6/data
+VOLUME /g6
 EXPOSE 8000
 
 ENTRYPOINT ["tini", "--"]

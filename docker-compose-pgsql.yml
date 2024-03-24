@@ -7,7 +7,7 @@ services:
       options:
         max-size: "10m"
     volumes:
-      - ./data:/g6/data
+      - ./data:/g6
     ports:
       - "8000:8000"
 
