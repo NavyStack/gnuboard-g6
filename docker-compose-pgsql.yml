@@ -7,24 +7,9 @@ services:
       options:
         max-size: "10m"
     volumes:
-      - ./data:/g6
+      - gnuboard6-data:/g6
     ports:
       - "8000:8000"
-
-  gnuboard6-nginx:
-    image: nginx:mainline
-    restart: unless-stopped
-    logging:
-      options:
-        max-size: "10m"
-    depends_on:
-      - gnuboard6
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    networks:
-      - gnuboard6-internal
-    ports:
-      - 80:80
 
   gnuboard6-postgresql:
     image: postgres:16-bullseye
@@ -40,3 +25,4 @@ services:
 
 volumes:
   postgresql_database:
+  gnuboard6-data:

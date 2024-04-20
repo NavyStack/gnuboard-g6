@@ -7,7 +7,7 @@ services:
       options:
         max-size: "10m"
     volumes:
-      - ./data:/g6
+      - gnuboard6-data:/g6
     ports:
       - "8000:8000"
     networks:
@@ -48,5 +48,6 @@ services:
 volumes:
   db_data:
   db_socket:
+  gnuboard6-data:
 networks:
   gnuboard6-internal:
