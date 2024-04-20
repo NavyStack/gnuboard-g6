@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   gnuboard6:
     image: navystack/gnuboard-g6:nightly-latest
