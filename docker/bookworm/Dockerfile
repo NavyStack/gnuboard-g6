@@ -1,7 +1,7 @@
 FROM python:3.12 AS git
 RUN git clone --recurse-submodules -j8 --depth 1 https://github.com/gnuboard/g6.git
 
-FROM ghcr.io/navystack/gnuboard-g6:base-nightly AS base
+FROM navystack/gnuboard-g6:base-nightly AS base
 RUN rm -rf /g6/requirements.txt
 COPY --from=git --chown=${USER}:${USER} /g6/requirements.txt /g6/requirements.txt
 
