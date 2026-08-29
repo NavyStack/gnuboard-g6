@@ -4,8 +4,11 @@
 [metadata]
 groups = ["default"]
 strategy = ["cross_platform", "inherit_metadata"]
-lock_version = "4.4.1"
-content_hash = "sha256:2f3c5321fb969bc98c8ba808cbc2bfe1848d68b363173517da743fdb73de686a"
+lock_version = "4.5.1"
+content_hash = "sha256:98832aad950bd78596c8de36734b50e427cdc78d51866fa6d559770e15bb7c14"
+
+[[metadata.targets]]
+requires_python = ">=3.12"
 
 [[package]]
 name = "annotated-types"
@@ -378,13 +381,13 @@ files = [
 
 [[package]]
 name = "idna"
-version = "3.4"
-requires_python = ">=3.5"
+version = "3.15"
+requires_python = ">=3.8"
 summary = "Internationalized Domain Names in Applications (IDNA)"
 groups = ["default"]
 files = [
-    {file = "idna-3.4-py3-none-any.whl", hash = "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"},
-    {file = "idna-3.4.tar.gz", hash = "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4"},
+    {file = "idna-3.15-py3-none-any.whl", hash = "sha256:048adeaf8c2d788c40fee287673ccaa74c24ffd8dcf09ffa555a2fbb59f10ac8"},
+    {file = "idna-3.15.tar.gz", hash = "sha256:ca962446ea538f7092a95e057da437618e886f4d349216d2b1e294abfdb65fdc"},
 ]
 
 [[package]]
