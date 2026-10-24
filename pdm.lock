@@ -4,8 +4,11 @@
 [metadata]
 groups = ["default"]
 strategy = ["cross_platform", "inherit_metadata"]
-lock_version = "4.4.1"
-content_hash = "sha256:2f3c5321fb969bc98c8ba808cbc2bfe1848d68b363173517da743fdb73de686a"
+lock_version = "4.5.1"
+content_hash = "sha256:42321a80a4b2b34d2e0f717ec44bb93c9e3d02ad684ed70bd4c62e05fa259e30"
+
+[[metadata.targets]]
+requires_python = ">=3.12"
 
 [[package]]
 name = "annotated-types"
@@ -126,13 +129,13 @@ files = [
 
 [[package]]
 name = "certifi"
-version = "2023.7.22"
-requires_python = ">=3.6"
+version = "2026.10.19"
+requires_python = ">=3.7"
 summary = "Python package for providing Mozilla's CA Bundle."
 groups = ["default"]
 files = [
-    {file = "certifi-2023.7.22-py3-none-any.whl", hash = "sha256:92d6037539857d8206b8f6ae472e8b77db8058fec5937a1ef3f54304089edbb9"},
-    {file = "certifi-2023.7.22.tar.gz", hash = "sha256:539cc1d13202e33ca466e88b2807e29f4c13049d6d87031a3c110744495cb082"},
+    {file = "certifi-2026.10.19-py3-none-any.whl", hash = "sha256:42d35340cc5b9ba78e818ddbff0c5b1c2b779de448a340fd1b989f5fa8670e1b"},
+    {file = "certifi-2026.10.19.tar.gz", hash = "sha256:035c1e85572b141bf1c3a3eff0e33a8eb74917522f2559075ff8d2fea780a1ae"},
 ]
 
 [[package]]
